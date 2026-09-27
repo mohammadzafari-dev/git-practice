@@ -11,3 +11,6 @@ jobs:
 
       - name: List files
         run: ls -la
+
+      - name: Create file
+        run: touch built-on-server.txt && ls -al
