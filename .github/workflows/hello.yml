@@ -1,14 +1,13 @@
-name: MY FIRST PIPELINE IN THE WORLD
+name: My First Pipeline
 
-on: puhs
+on: push
 
 jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
       - name: Say hello
-        run: echo "Hello from Github actions"
+        run: echo "Hello from GitHub Actions!"
+
       - name: List files
-        run: ls -al
-
-
+        run: ls -la
