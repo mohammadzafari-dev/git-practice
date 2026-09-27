@@ -1,13 +1,22 @@
-name: CI Pipeline
+name: Build Pipeline
 
 on: push
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run tests
-        run: ./test.sh
+      - name: Build
+        run: |
+          mkdir -p dist
+          echo "app version 1.0 - built at $(date)" > dist/app.txt
+          tar czf dist/app-package.tar.gz app.sh test.sh
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-package
+          path: dist/
