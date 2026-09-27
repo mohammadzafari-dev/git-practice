@@ -1,0 +1,12 @@
+name: MY FIRST PIPELINE IN THE WORLD
+on: puh
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello from Github actions"
+      - name: List files
+        run: ls -al
+
+
