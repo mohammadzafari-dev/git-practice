@@ -11,21 +11,11 @@ jobs:
       - name: Run tests
         run: bash test.sh
 
-  deploy:
+  marker:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Create deploy marker
+        run: echo "commit ${{ github.sha }} is ready to deploy"
 
-      - name: Setup SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
 
-      - name: Deploy to server
-        run: |
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no mamad@localhost "mkdir -p ~/www/current"
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no app.sh test.sh mamad@localhost:~/www/current/
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no mamad@localhost "echo 'DEPLOYED at $(date)' >> ~/www/deploy.log"
