@@ -1,16 +1,13 @@
-name: My First Pipeline
+name: CI Pipeline
 
 on: push
 
 jobs:
-  hello:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Say hello
-        run: echo "Hello from GitHub Actions!"
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: List files
-        run: ls -la
-
-      - name: Create file
-        run: touch built-on-server.txt && ls -al
+      - name: Run tests
+        run: ./test.sh
