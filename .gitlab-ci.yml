@@ -5,7 +5,7 @@ stages:
 build_job:
   stage: build
   script:
-    - echo "building"
+    - echo "building on MY SERVER: $(hostname)"
     - mkdir -p dist
     - echo "app version 1.0" > dist/app.txt
   artifacts:
