@@ -1,5 +1,7 @@
 name: MY FIRST PIPELINE IN THE WORLD
-on: puh
+
+on: puhs
+
 jobs:
   hello:
     runs-on: ubuntu-latest
