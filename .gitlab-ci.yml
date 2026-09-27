@@ -1,0 +1,21 @@
+stages:
+  - build
+  - test
+
+build_job:
+  stage: build
+  script:
+    - echo " build the app... "
+    - mkdir -p dist
+    - echo "app version 1.0" > dist/app.txt
+  artifacts:
+    paths:
+      - dist/
+
+test_job:
+  stage: test
+  script:
+    - echo "running tests..."
+    - cat dist/app.txt
+    - test -f dist/app.txt && echo "TEST PASSED: app.txt exists"
+
